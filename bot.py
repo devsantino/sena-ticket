@@ -4,6 +4,7 @@ from discord import ButtonStyle, SelectOption
 from discord.ui import View, Button, Select
 from discord import app_commands
 import os  # استيراد مكتبة os للوصول إلى متغيرات البيئة
+from dotenv import load_dotenv
 
 # إعدادات الفئات
 CATEGORY_OPEN = "📂 التيكتات المفتوحة"
@@ -92,4 +93,5 @@ async def setup(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, view=view)
 
 # تشغيل البوت
-bot.run(os.getenv("TOKEN"))
+load_dotenv()  # تحميل المتغيرات من ملف .env
+TOKEN = os.getenv("TOKEN")
