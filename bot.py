@@ -91,11 +91,5 @@ async def setup(interaction: discord.Interaction):
     view = TicketView()
     await interaction.response.send_message(embed=embed, view=view)
 
-# تشغيل البوت باستخدام متغير البيئة
-TOKEN = os.getenv("TOKEN")  # الحصول على التوكن من متغير البيئة
-if not TOKEN:
-    raise ValueError("❌ لم يتم تعيين متغير البيئة TOKEN. يرجى تعيينه في Railway.")
-
 # تشغيل البوت
-if __name__ == "__main__":
-    bot.run(TOKEN)
+bot.run(os.getenv("TOKEN"))
