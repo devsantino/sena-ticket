@@ -96,4 +96,6 @@ TOKEN = os.getenv("TOKEN")  # الحصول على التوكن من متغير �
 if not TOKEN:
     raise ValueError("❌ لم يتم تعيين متغير البيئة TOKEN. يرجى تعيينه في Railway.")
 
-bot.run(TOKEN)
+# تشغيل البوت
+if __name__ == "__main__":
+    bot.run(TOKEN)
