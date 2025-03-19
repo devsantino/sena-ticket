@@ -4,7 +4,6 @@ from discord import ButtonStyle, SelectOption
 from discord.ui import View, Button, Select
 from discord import app_commands
 import os  # استيراد مكتبة os للوصول إلى متغيرات البيئة
-from dotenv import load_dotenv
 
 # إعدادات الفئات
 CATEGORY_OPEN = "📂 التيكتات المفتوحة"
@@ -92,6 +91,11 @@ async def setup(interaction: discord.Interaction):
     view = TicketView()
     await interaction.response.send_message(embed=embed, view=view)
 
+# تشغيل البوت باستخدام متغير البيئة
+TOKEN = os.getenv("TOKEN")  # الحصول على التوكن من متغير البيئة
+if not TOKEN:
+    raise ValueError("❌ لم يتم تعيين متغير البيئة TOKEN. يرجى تعيينه في Railway.")
+
 # تشغيل البوت
-load_dotenv()  # تحميل المتغيرات من ملف .env
-TOKEN = os.getenv("TOKEN")
+if __name__ == "__main__":
+    bot.run(TOKEN)
