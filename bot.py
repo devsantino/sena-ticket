@@ -60,7 +60,7 @@ class ConfirmCloseView(View):
     async def confirm(self, interaction: discord.Interaction, button: Button):
         closed_category = discord.utils.get(interaction.guild.categories, name=CATEGORY_CLOSED)
         if not closed_category:
-            closed_category = await interaction.guild.create_category(CATEGORY_CLOSED)
+            closed_category = await interaction.guild.create_category(CATGORY_CLOSED)
 
         await interaction.channel.edit(category=closed_category)
         await interaction.response.send_message("✅ تم إغلاق التيكت بنجاح!", ephemeral=True)
@@ -92,4 +92,6 @@ async def setup(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, view=view)
 
 # تشغيل البوت باستخدام متغير البيئة
-bot.run(os.getenv("TOKEN"))
+TOKEN = os.getenv("TOKEN")  # الحصول على التوكن من متغير البيئة
+if not TOKEN:
+    raise ValueError("❌ لم يتم تعيين متغير البيئة TOKEN. يرجى تعيينه في Railway.")
